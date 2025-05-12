@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎀 Cewek Kue Birthday Card 🎂</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: linear-gradient(180deg, #ffe6f0 0%, #ffcfe7 35%, #ffe2ff 100%);
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        overflow-x: hidden;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.6s ease-in-out forwards;
+        opacity: 0;
+      }
+
+      .shimmer {
+        background: linear-gradient(90deg, #fff4f9 25%, #ffeef5 50%, #fff4f9 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite linear;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .bubble {
+        @apply rounded-2xl px-4 py-2 bg-pink-200 text-pink-800 inline-block text-left w-fit max-w-xs shadow-md backdrop-blur-md;
+      }
+
+      .bubble.me {
+        @apply self-end bg-pink-100 text-pink-600;
+      }
+
+      @keyframes fadeInSlow {
+        0% {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fadeInSlow {
+        animation: fadeInSlow 1.5s ease-out forwards;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="flex flex-col items-center justify-center min-h-screen relative px-4">
+    <!-- Kartu -->
+    <div class="relative bg-white border-4 border-pink-300 rounded-3xl p-6 max-w-md w-full mt-10 shadow-2xl text-center z-10 shimmer">
+      <h1 class="text-3xl font-bold text-pink-600 mb-4 animate-pulse">🎂 Happy Birthday!</h1>
+      <div id="chat" class="flex flex-col items-center fade-in min-h-[160px] h-[160px] justify-center transition-all duration-500"></div>
+      <button onclick="revealMessage()" class="mt-6 px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-lg transition transform active:scale-95 animate-bounce">💌 Tap again!</button>
+
+      <!-- Sound effects -->
+      <audio id="pop" src="https://assets.mixkit.co/active_storage/sfx/1098/1098-preview.mp3" preload="auto"></audio>
+    </div>
+
+    <!-- Musik cute autoplay -->
+    <audio id="bgm" autoplay loop muted>
+      <source src="https://cdn.pixabay.com/download/audio/2023/04/06/audio_6be0d5f320.mp3?filename=birthday-party-short-music-145148.mp3" type="audio/mp3" />
+      Browsermu tidak mendukung audio autoplay.
+    </audio>
+
+    <!-- Footer -->
+    <footer class="mt-6 mb-10 text-xs text-pink-500 italic animate-fadeInSlow text-center">Made with heart, Alan "Zagi" at 4 May 2025</footer>
+
+    <!-- Script -->
+    <script>
+      const messages = [
+        { text: "🎂 Hi, it's your birthday today! Honestly... I wasn't sure what to give you, Cheli 😌", sender: "you" },
+        { text: "But truth is, I’ve just been waiting for the perfect excuse to text you—and your birthday feels like the sweetest one 🥳", sender: "me" },
+        { text: "🔝 May I tell you a little story—one I’m pretty sure you’ve never heard?", sender: "you" },
+        {
+          text: "🎀 It began on August 29, 2023 — You’d often drop by my class early in the morning. I remember quietly asking my friends, 'Who's that girl who keeps walking in?' I learned your name, but I didn’t dare get closer.",
+          sender: "you",
+        },
+        { text: "💬 Fast forward to June 24, 2024 — I was still too shy to speak first, yet somehow... you texted me and introduced yourself. So bold, so honest 😏", sender: "me" },
+        { text: "🎀 Just a little backstory, so you’d understand why I wrote all this with a silly smile on my face.", sender: "you" },
+        { text: "😉 Happy Birthday, Cheli! Is it your 18th or 19th now? You don’t have to tell me—but I’d love it if you did", sender: "me" },
+        { text: "🚨 I really just hope you feel happy today... and not just today, if I’m being honest. There’s something about your smile—it stays in my mind longer than I expect.", sender: "you" },
+        { text: "💬 Maybe I think about you more often than I should... but I don’t really mind.", sender: "me" },
+        { text: "🎈 So yeah... I made this tiny thing just for you. Maybe it’ll make you smile. Maybe it’ll make you wanna text me back. 💅", sender: "you" },
+        { text: "🎁 And hey, don’t ask how I knew your birthday. Let’s just say... I notice more than you think 😉", sender: "me" },
+        { text: "🚨 Now tap the button below—it might take you somewhere you're meant to be 💌", sender: "you" },
+      ];
+
+      let current = 0;
+      const chat = document.getElementById("chat");
+      const pop = document.getElementById("pop");
+
+      function revealMessage() {
+        const bgm = document.getElementById("bgm");
+
+        if (bgm.muted) {
+          bgm.muted = false;
+          bgm.volume = 0.5;
+        }
+
+        // Bersihkan chat bubble sebelumnya
+        chat.innerHTML = "";
+
+        if (current < messages.length) {
+          const bubble = document.createElement("div");
+          bubble.className = `bubble ${messages[current].sender === "me" ? "self-end me" : ""}`;
+          bubble.textContent = messages[current].text;
+          bubble.classList.add("fade-in");
+          chat.appendChild(bubble);
+          current++;
+          pop.currentTime = 0;
+          pop.play();
+        } else {
+          window.open("https://wa.me/6281521550913?text=Well%20I%20Think%20This's%20Your%20Favorite%20Emoji%20:V%20:V%20:V", "_blank");
+        }
+      }
+    </script>
+  </body>
+</html>
