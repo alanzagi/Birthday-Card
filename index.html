@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Chelsea Milany ✨🎀</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
     <style>
       body {
         font-family: "Quicksand", sans-serif;
@@ -39,17 +42,26 @@
         background: #ffa3d7;
         color: white;
       }
+
+      .font-rubik {
+        font-family: "Rubik", sans-serif;
+        font-style: normal;
+      }
     </style>
   </head>
-  <body class="flex flex-col items-center justify-center min-h-screen px-4">
+  <body class="flex flex-col items-center justify-center min-h-screen px-4 font-rubik">
     <div class="relative coquette-frame rounded-[2rem] p-8 max-w-md w-full mt-12 text-center">
       <h1 class="text-4xl text-pink-600 mb-4">Letter for Cheli! 🎀</h1>
 
       <div id="switchLang" title="Ganti Bahasa">🌐</div>
 
-      <div id="msgBox" class="flex flex-col items-center space-y-4 min-h-[160px]"></div>
-      <button onclick="showNext()" class="mt-4 px-5 py-2 bg-pink-400 hover:bg-pink-500 text-white rounded-full shadow-md transition-all">💌 Open Letter</button>
+      <div id="msgBox" class="flex flex-col items-center space-y-4 min-h-[160px] font-rubik"></div>
+      <button onclick="showNext()" class="mt-4 px-5 py-2 bg-pink-400 hover:bg-pink-500 text-white rounded-full shadow-md transition-all font-rubik">💌 Open Letter</button>
     </div>
+
+    <footer class="mt-12 mb-6 text-center text-pink-600 text-xs select-none font">
+      Made with love, By <a href="https://instagram.com/alanzagi" target="_blank" class="hover:underline text-sm text-pink-900">Alan "Zagi" </a>at May 14 2025
+    </footer>
 
     <script>
       // Dua versi letter: English dan Gaul Indo
@@ -68,7 +80,7 @@
           { text: "Something good always leaves a trace. And you leaved your traces here and not gonna lie, everytime I listen to this song. The first thing I remember is YOU 🎧❤️" },
           { text: "Here's the song I talk about 🎶👇" },
           { video: "storage/BirdsOfFeather.mp4", startAt: 60 },
-          { text: "Well, the lyrics also pretty much represent what I'm afraid to say but want to tell you 🎤💌" },
+          { text: "Well, the lyrics also pretty much represent what I'm afraid to say but want to tell you 🎤💌 *wait plz, the song is loading" },
           { text: "I've been meaning to say this... birthdays aren't just about cake and candles. 🎂🕯️" },
           { text: "They're also about the people who make the world brighter just by existing. Like you. ✨🌸" },
           { text: "You good at cooking, that is impressive. I proud about how good you with that. 🍳👩‍🍳" },
@@ -91,13 +103,13 @@
           { image: "img/awalkenal.jpg" },
           { text: "Mulai dari 29 Agustus 2023 — Kamu sering dateng pagi-pagi ke kelasku. Aku diem diem nanya temenku, 'Siapa tuh cewe yang biasa masuk ke kelas kita?' Aku tau namamu, tapi ga cukup berani buat kenalan. 🕊️😳" },
           { image: "img/diangenalindirinya.jpg" },
-          { text: "💬 Fast forward ke 24 Juni 2024 — Aku masih malu buat duluan ngomong, tapi kamu malah duluan yang chat dan ngenalin diri.Kamu berani banget, jujur banget 😏📱" },
+          { text: "💬 Fast forward ke 24 Juni 2024 — Aku masih malu buat duluan ngomong, tapi kamu malah duluan yang chat dan ngenalin diri. Kamu berani banget, jujur banget 😏📱" },
           { text: "Itu cuma cerita singkat aja, biar kamu ngerti kenapa aku nulis ini sambil senyum tipis. 😊📖" },
-          { text: "Selain itu, aku pengen banget liat kamu bahagia hari ini.. dan bukan cuma hari ini. Kamu cewek paling ceria yang pernah aku kenal. Kehadiranmu selalu bikin hariku cerah. Tetep jadi diri kamu ya! ☀️" },
-          { text: "Yang baik selalu ninggalin jejak. Kamu ninggalin jejak di sini, dan jujur tiap denger lagu ini, yang aku inget pertama itu KAMU 🎧❤️" },
+          { text: "Selain itu, aku pengen banget liat kamu bahagia hari ini.. dan bukan cuma hari ini. Kamu cewek paling ceria yang pernah aku kenal. Kehadiranmu selalu bikin hari cerah. Tetep jadi diri kamu ya! ☀️" },
+          { text: "Yang baik selalu ninggalin jejak. Kamu ninggalin jejak di sini, dan jujur tiap denger lagu ini, yang aku inget pertama itu KAMU 🎧" },
           { text: "Ini lagu yang aku maksud 🎶👇" },
           { video: "storage/BirdsOfFeather.mp4", startAt: 60 },
-          { text: "Liriknya juga kayak apa yang aku takut bilang tapi pengen banget aku sampaikan 🎤💌" },
+          { text: "Liriknya juga kayak apa yang aku takut bilang tapi pengen banget aku sampaikan 🎤💌 *vidnya loading bentar" },
           { text: "Kamu harus tau... ulang tahun bukan cuma soal kue dan lilin. 🎂🕯️" },
           { text: "Tapi juga soal orang-orang yang bikin dunia jadi lebih cerah dengan hanya perlu ada. Kayak kamu. ✨🌸" },
           { text: "Kamu jago masak, keren banget. Soal itu, aku ikutan bangga boleh ya? 🍳👩‍🍳" },
