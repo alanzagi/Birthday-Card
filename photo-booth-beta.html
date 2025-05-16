@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Booth Cheli 🎀</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-pink-50 flex flex-col items-center justify-center min-h-screen p-4">
+    <h1 class="text-2xl font-semibold text-pink-600 mb-4">📸 Photo Booth for Cheli 🎀</h1>
+
+    <!-- FRAME + VIDEO -->
+    <div class="relative w-[360px] h-[480px] rounded-xl overflow-hidden border-4 border-pink-300 shadow-xl mb-4 bg-url">
+      <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
+      <img id="frameOverlay" src="img/de475d56-1910-4254-ba9c-6358f1037e77.png" class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none" />
+    </div>
+
+    <!-- TOMBOL AMBIL FOTO -->
+    <button id="captureBtn" class="bg-pink-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-pink-600 transition mb-4">🎀 Ambil Foto</button>
+
+    <!-- PREVIEW FOTO -->
+    <div id="previewContainer" class="flex flex-col items-center">
+      <img id="photoPreview" class="rounded-xl shadow-lg mb-2" alt="Preview Foto" style="width: 360px; height: 480px; object-fit: cover" />
+      <a id="downloadBtn" href="#" download="cheli_frame.png" class="hidden bg-pink-600 text-white px-4 py-2 rounded-md hover:bg-pink-700 transition"> ⬇️ Download Foto </a>
+    </div>
+
+    <!-- CANVAS HIDDEN -->
+    <canvas id="canvas" width="360" height="480" class="hidden"></canvas>
+
+    <!-- SCRIPT -->
+    <script>
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const captureBtn = document.getElementById("captureBtn");
+      const frameOverlay = document.getElementById("frameOverlay");
+      const photoPreview = document.getElementById("photoPreview");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      // Akses webcam
+      navigator.mediaDevices
+        .getUserMedia({ video: { width: 360, height: 480 } })
+        .then((stream) => {
+          video.srcObject = stream;
+          video.addEventListener("loadedmetadata", () => {
+            // Sesuaikan ukuran canvas dengan video sebenarnya
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Sesuaikan juga ukuran preview sesuai video
+            photoPreview.style.width = video.videoWidth + "px";
+            photoPreview.style.height = video.videoHeight + "px";
+
+            // Sesuaikan container div (jika perlu)
+            const container = document.querySelector(".relative.w-[360px].h-[480px]");
+            if (container) {
+              container.style.width = video.videoWidth + "px";
+              container.style.height = video.videoHeight + "px";
+            }
+          });
+        })
+        .catch((err) => {
+          alert("Tidak bisa mengakses kamera: " + err.message);
+        });
+
+      captureBtn.addEventListener("click", () => {
+        const ctx = canvas.getContext("2d");
+
+        // Gambar video ke canvas
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Gambar overlay frame ke canvas
+        if (frameOverlay.complete) {
+          ctx.drawImage(frameOverlay, 0, 0, canvas.width, canvas.height);
+
+          // Buat URL image dari canvas
+          const imageUrl = canvas.toDataURL("image/png");
+
+          // Tampilkan preview
+          photoPreview.src = imageUrl;
+
+          // Tampilkan tombol download dan update linknya
+          downloadBtn.href = imageUrl;
+          downloadBtn.classList.remove("hidden");
+        } else {
+          frameOverlay.onload = () => {
+            ctx.drawImage(frameOverlay, 0, 0, canvas.width, canvas.height);
+
+            const imageUrl = canvas.toDataURL("image/png");
+
+            photoPreview.src = imageUrl;
+            downloadBtn.href = imageUrl;
+            downloadBtn.classList.remove("hidden");
+          };
+        }
+      });
+    </script>
+  </body>
+</html>
