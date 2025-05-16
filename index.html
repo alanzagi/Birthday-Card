@@ -2,148 +2,180 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chelsea Milany 🎀🎂</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chelsea Milany ✨🎀</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="img/alanxcode.jpg" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
     <style>
-      .font-rubik {
-        font-family: "Rubik", sans-serif;
-        font-style: normal;
-      }
-
       body {
-        background: linear-gradient(180deg, #ffe6f0 0%, #ffcfe7 35%, #ffe2ff 100%);
+        font-family: "Quicksand", sans-serif;
+        background: linear-gradient(135deg, #ffeaf6, #ffd1ec);
         overflow-x: hidden;
       }
-
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .coquette-frame {
+        background: #fffafc;
+        border: 3px dashed #ffa3d7;
+        box-shadow: 0 0 20px rgba(255, 182, 218, 0.4);
       }
-
-      .fade-in {
-        animation: fadeIn 0.6s ease-in-out forwards;
-        opacity: 0;
+      /* Tombol switch bahasa di kanan atas kartu */
+      #switchLang {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 1.25rem;
+        color: #d6336c;
+        user-select: none;
+        background: #ffe3f0;
+        border-radius: 9999px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 8px rgba(255, 150, 200, 0.7);
+        transition: background-color 0.3s;
       }
-
-      .shimmer {
-        background: linear-gradient(90deg, #fff4f9 25%, #ffeef5 50%, #fff4f9 75%);
-        background-size: 200% 100%;
-        animation: shimmer 1.5s infinite linear;
-      }
-
-      @keyframes shimmer {
-        0% {
-          background-position: -200% 0;
-        }
-        100% {
-          background-position: 200% 0;
-        }
-      }
-
-      .bubble {
-        @apply rounded-2xl px-4 py-2 bg-pink-200 text-pink-800 inline-block text-left w-fit max-w-xs shadow-md backdrop-blur-md;
-      }
-
-      .bubble.me {
-        @apply self-end bg-pink-100 text-pink-600;
-      }
-
-      @keyframes fadeInSlow {
-        0% {
-          opacity: 0;
-          transform: translateY(5px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fadeInSlow {
-        animation: fadeInSlow 1.5s ease-out forwards;
-        opacity: 0;
+      #switchLang:hover {
+        background: #ffa3d7;
+        color: white;
       }
     </style>
   </head>
-  <body class="flex flex-col items-center justify-center min-h-screen relative px-4 font-rubik">
-    <!-- Kartu -->
-    <div class="relative bg-white border-4 border-pink-300 rounded-3xl p-6 max-w-md w-full mt-10 shadow-2xl text-center z-10 shimmer">
-      <h1 class="text-3xl font-bold text-pink-600 mb-4 animate-pulse">🎂 Happy Birthday!</h1>
-      <div id="chat" class="flex flex-col items-center fade-in min-h-[160px] h-[160px] justify-center transition-all duration-500"></div>
-      <button onclick="revealMessage()" class="mt-6 px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-lg transition transform active:scale-95 animate-bounce">💌 Tap again!</button>
+  <body class="flex flex-col items-center justify-center min-h-screen px-4">
+    <div class="relative coquette-frame rounded-[2rem] p-8 max-w-md w-full mt-12 text-center">
+      <h1 class="text-4xl text-pink-600 mb-4">Letter for Cheli! 🎀</h1>
 
-      <!-- Sound effects -->
-      <audio id="pop" src="https://assets.mixkit.co/active_storage/sfx/1098/1098-preview.mp3" preload="auto"></audio>
+      <div id="switchLang" title="Ganti Bahasa">🌐</div>
+
+      <div id="msgBox" class="flex flex-col items-center space-y-4 min-h-[160px]"></div>
+      <button onclick="showNext()" class="mt-4 px-5 py-2 bg-pink-400 hover:bg-pink-500 text-white rounded-full shadow-md transition-all">💌 Open Letter</button>
     </div>
 
-    <!-- Musik cute autoplay -->
-    <audio id="bgm" autoplay loop muted>
-      <source src="https://cdn.pixabay.com/download/audio/2023/04/06/audio_6be0d5f320.mp3?filename=birthday-party-short-music-145148.mp3" type="audio/mp3" />
-      Browsermu tidak mendukung audio autoplay.
-    </audio>
-
-    <!-- Footer -->
-    <footer class="mt-6 mb-10 text-xs text-pink-500 italic animate-fadeInSlow text-center">Made with heart, Alan "Zagi" at 4 May 2025</footer>
-
-    <!-- Script -->
     <script>
-      const messages = [
-        { text: "🎂 Hi, it's your birthday today! Honestly... I wasn't sure what to give you, Cheli 😌", sender: "you" },
-        { text: "But truth is, I’ve just been waiting for the perfect excuse to text you—and your birthday feels like the sweetest one 🥳", sender: "me" },
-        { text: "🔝 May I tell you a little story—one I’m pretty sure you’ve never heard?", sender: "you" },
-        {
-          text: "🎀 It began on August 29, 2023 — You’d often drop by my class early in the morning. I remember quietly asking my friends, 'Who's that girl who keeps walking in?' I learned your name, but I didn’t dare get closer.",
-          sender: "you",
-        },
-        { text: "💬 Fast forward to June 24, 2024 — I was still too shy to speak first, yet somehow... you texted me and introduced yourself. So bold, so honest 😏", sender: "me" },
-        { text: "🎀 Just a little backstory, so you’d understand why I wrote all this with a silly smile on my face.", sender: "you" },
-        { text: "😉 Happy Birthday, Cheli! Is it your 18th or 19th now? You don’t have to tell me—but I’d love it if you did", sender: "me" },
-        { text: "🚨 I really just hope you feel happy today... and not just today, if I’m being honest. There’s something about your smile—it stays in my mind longer than I expect.", sender: "you" },
-        { text: "💬 Maybe I think about you more often than I should... but I don’t really mind.", sender: "me" },
-        { text: "🎈 So yeah... I made this tiny thing just for you. Maybe it’ll make you smile. Maybe it’ll make you wanna text me back. 💅", sender: "you" },
-        { text: "🎁 And hey, don’t ask how I knew your birthday. Let’s just say... I notice more than you think 😉", sender: "me" },
-        { text: "🚨 Now tap the button below—it might take you somewhere you're meant to be 💌", sender: "you" },
-      ];
+      // Dua versi letter: English dan Gaul Indo
+      const letters = {
+        en: [
+          { text: "Dear you, Cheli, 🧁" },
+          { text: "First of all. Happy Birthday! You're a year wiser, a bit more iconic, and still completely charming. 🎉💖" },
+          { text: "You’re still here — bringing smiles, laughter, and that bright energy only you have. Thanks for staying, for being you and for lighting up the days of the people around you. 🌼🎉" },
+          { text: "How about we go back a bit to where we got to know each other? 🔙👀" },
+          { image: "img/awalkenal.jpg" },
+          { text: "It began on August 29, 2023 — You’d often drop by my class early in the morning. I remember quietly asking my friends, 'Who's that girl who keeps walking in?' I learned your name, but I didn’t dare to get closer. 🕊️😳" },
+          { image: "img/diangenalindirinya.jpg" },
+          { text: "💬 Fast forward to June 24, 2024 — I was still too shy to speak first, yet somehow... you texted me and introduced yourself. So bold, so honest 😏📱" },
+          { text: "That was just a little backstory, so you’d understand why I wrote all this with a silly smile on my face. 😊📖" },
+          { text: "Besides, I really wanna see you happy today.. and not just today. You're most badly cheerful girl I ever met. Your existence always made my day. Keep you that way, will ya! ☀️" },
+          { text: "Something good always leaves a trace. And you leaved your traces here and not gonna lie, everytime I listen to this song. The first thing I remember is YOU 🎧❤️" },
+          { text: "Here's the song I talk about 🎶👇" },
+          { video: "storage/BirdsOfFeather.mp4", startAt: 60 },
+          { text: "Well, the lyrics also pretty much represent what I'm afraid to say but want to tell you 🎤💌" },
+          { text: "I've been meaning to say this... birthdays aren't just about cake and candles. 🎂🕯️" },
+          { text: "They're also about the people who make the world brighter just by existing. Like you. ✨🌸" },
+          { text: "You good at cooking, that is impressive. I proud about how good you with that. 🍳👩‍🍳" },
+          { text: "Ofc, I also talk about donuts you gave me a few weeks ago. It was pretty delicious even I know I can't eat sweet things but when I found out they were made by you, the tastes was so worth it 🍩🤍" },
+          { text: "The donuts were really sweet, But I think that makes sense — you probably smiled without noticing while making them. 🍩🙂" },
+          { text: "This might be a small page, but I hope it feels like a warm pink hug. 🤗" },
+          { text: "Okay now, go shine like the gem you are 💎. You were literally born to be adored. 🌟👑" },
+          { text: "Still here, still glowing ✨. Happy for you - the sunshine in human form. The world’s way more fun with you in it 🌈🎉" },
+          { text: "Keep dazzling with your 'cake' style ✨🎨. For the girl who turns heads and lights up hearts just by being herself. Shine on, 'atta girl! 🌟💖" },
+          { text: "So yeah, I hope this little message makes you smile. Maybe even make you wanna reply. 💌😄" },
+          { text: "And hey! Don't ask me how do I know your birthday. Cause someone once said: 🤫🎂" },
+          { text: "⭐ 'If he want, he would' ⭐" },
+          { text: "If you press the button once again, it will bring you somewhere. Let's try and see where will you be 🚪✨" },
+        ],
+        gaul: [
+          { text: "Hai, Cheli, 🧁" },
+          { text: "Selamat ulang tahun ya! Kamu makin dewasa, makin kece, dan tetep charming abis. 🎉💖" },
+          { text: "Kamu tuh selalu ada disini buat bawa senyum, ketawa, dan energi cerah yang kamu punya. Makasih udah jadi diri kamu dan bikin hari-hari jadi cerah. 🌼🎉" },
+          { text: "Gimana kalo kita agak mundur dikit, inget awal kita kenalan? 🔙👀" },
+          { image: "img/awalkenal.jpg" },
+          { text: "Mulai dari 29 Agustus 2023 — Kamu sering dateng pagi-pagi ke kelasku. Aku diem diem nanya temenku, 'Siapa tuh cewe yang biasa masuk ke kelas kita?' Aku tau namamu, tapi ga cukup berani buat kenalan. 🕊️😳" },
+          { image: "img/diangenalindirinya.jpg" },
+          { text: "💬 Fast forward ke 24 Juni 2024 — Aku masih malu buat duluan ngomong, tapi kamu malah duluan yang chat dan ngenalin diri.Kamu berani banget, jujur banget 😏📱" },
+          { text: "Itu cuma cerita singkat aja, biar kamu ngerti kenapa aku nulis ini sambil senyum tipis. 😊📖" },
+          { text: "Selain itu, aku pengen banget liat kamu bahagia hari ini.. dan bukan cuma hari ini. Kamu cewek paling ceria yang pernah aku kenal. Kehadiranmu selalu bikin hariku cerah. Tetep jadi diri kamu ya! ☀️" },
+          { text: "Yang baik selalu ninggalin jejak. Kamu ninggalin jejak di sini, dan jujur tiap denger lagu ini, yang aku inget pertama itu KAMU 🎧❤️" },
+          { text: "Ini lagu yang aku maksud 🎶👇" },
+          { video: "storage/BirdsOfFeather.mp4", startAt: 60 },
+          { text: "Liriknya juga kayak apa yang aku takut bilang tapi pengen banget aku sampaikan 🎤💌" },
+          { text: "Kamu harus tau... ulang tahun bukan cuma soal kue dan lilin. 🎂🕯️" },
+          { text: "Tapi juga soal orang-orang yang bikin dunia jadi lebih cerah dengan hanya perlu ada. Kayak kamu. ✨🌸" },
+          { text: "Kamu jago masak, keren banget. Soal itu, aku ikutan bangga boleh ya? 🍳👩‍🍳" },
+          { text: "Ofc, aku juga inget donat yang kamu kasih beberapa minggu lalu. Enak banget walau aku tau aku ga boleh makan yang manis, tapi pas tau itu buatan kamu, it's worth to try 🍩🤍" },
+          { text: "Donatnya sih gatau kok manis banget, tapi aku rasa wajar aja sih — mungkin kamu kamu ga sadar sambil senyum pas bikinnya. 🍩🙂" },
+          { text: "Ini sedikit tulisan kecil, tapi aku harap kayak pelukan hangat agak warna pink gitu. 🤗" },
+          { text: "Sekarang, kamu bersinar terus ya kayak berlian 💎. Kamu emang lahir buat dikagumin. 🌟👑" },
+          { text: "Kamu masih di sini, masih bersinar ✨. Selalu bahagia buat kamu — kamu tu kayak matahari versi manusia. Dunia jadi lebih seru kalau ada kamu di dalamnya 🌈🎉" },
+          { text: "Terus pake ya outfit 'cewe kue' kamu yang pink pink itu ✨🎨. Biar semua orang berbinar karena kamu jadi dirimu sendiri. Terus berkilau ya, 'atta girl! 🌟💖" },
+          { text: "Jadi ya, aku harap sedikit tulisan ini bikin kamu senyum. Mungkin juga pengen bales chat. 💌😄" },
+          { text: "Eh! Jangan tanya aku tau ulang tahun kamu dari mana. Karena kan ada yang pernah bilang: 🤫🎂" },
+          { text: "⭐ 'Kalau dia mau, dia bakal' ⭐" },
+          { text: "Kalo kamu pencet tombolnya lagi, kamu bakal dibawa ke tempat lain. Yuk coba dan lihat kamu bakal kemana 🚪✨" },
+        ],
+      };
+      let currentLang = "en";
+      let idx = 0;
+      const box = document.getElementById("msgBox");
+      const switchBtn = document.getElementById("switchLang");
+      const openBtn = document.querySelector("button");
 
-      let current = 0;
-      const chat = document.getElementById("chat");
-      const pop = document.getElementById("pop");
-
-      function revealMessage() {
-        const bgm = document.getElementById("bgm");
-
-        if (bgm.muted) {
-          bgm.muted = false;
-          bgm.volume = 0.5;
+      function showNext() {
+        const letter = letters[currentLang];
+        if (idx >= letter.length) {
+          window.open("https://wa.me/6281521550913?text=this%20is%20your%20favourite%20emoji%20:v%20:v&20:v", "_blank");
+          return;
         }
 
-        // Bersihkan chat bubble sebelumnya
-        chat.innerHTML = "";
+        const msg = letter[idx];
+        idx++;
 
-        if (current < messages.length) {
-          const bubble = document.createElement("div");
-          bubble.className = `bubble ${messages[current].sender === "me" ? "self-end me" : ""}`;
-          bubble.textContent = messages[current].text;
-          bubble.classList.add("fade-in");
-          chat.appendChild(bubble);
-          current++;
-          pop.currentTime = 0;
-          pop.play();
-        } else {
-          window.open("https://wa.me/6281521550913?text=well%20I%20think%20this's%20your%20favourite%20emoji%20:V%20:V%20:V%0Aand%20maybe%20one%20day%20i%E2%80%99ll%20be%20your%20another%20favourite%20too");
+        if (msg.text) {
+          const p = document.createElement("p");
+          p.className = "text-sm text-pink-700 bg-pink-100 rounded-xl px-4 py-2 shadow-sm w-fit";
+          p.textContent = msg.text;
+          box.appendChild(p);
+          box.scrollTop = box.scrollHeight; // scroll otomatis ke bawah kalau overflow
+        } else if (msg.video) {
+          const video = document.createElement("video");
+          video.src = msg.video;
+          video.controls = true;
+          video.className = "rounded-xl shadow-md max-w-full border border-pink-400";
+          video.style.maxHeight = "240px";
+
+          video.addEventListener("loadedmetadata", () => {
+            if (msg.startAt) {
+              video.currentTime = msg.startAt;
+              video.play();
+            }
+          });
+
+          box.appendChild(video);
+          box.scrollTop = box.scrollHeight;
+        } else if (msg.image) {
+          const img = document.createElement("img");
+          img.src = msg.image;
+          img.alt = "Birthday Image";
+          img.className = "rounded-xl shadow-md w-full border border-pink-400";
+
+          box.appendChild(img);
+          box.scrollTop = box.scrollHeight;
         }
       }
+
+      // Ganti bahasa tanpa refresh halaman
+      switchBtn.addEventListener("click", () => {
+        currentLang = currentLang === "en" ? "gaul" : "en";
+        idx = 0;
+        box.innerHTML = "";
+
+        if (currentLang === "en") {
+          document.querySelector("h1").textContent = "Letter for Cheli! 🎀";
+          openBtn.textContent = "💌 Open Letter";
+        } else {
+          document.querySelector("h1").textContent = "Surat Buat Cheli! 🎀";
+          openBtn.textContent = "💌 Buka Surat";
+        }
+      });
     </script>
   </body>
 </html>
